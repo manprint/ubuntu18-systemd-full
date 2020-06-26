@@ -115,6 +115,16 @@ COPY ./.bashrc /home/$USER_NAME/.bashrc
 RUN chown $USER_NAME:$USER_NAME /home/$USER_NAME/.bashrc
 COPY ./.bashrc /root/.bashrc
 
+# fix language ita
+
+RUN set -xev; \
+    echo "export LC_ALL=it_IT.UTF-8" >> /home/$USER_NAME/.bashrc; \
+    echo "export LANG=it_IT.UTF-8" >> /home/$USER_NAME/.bashrc; \
+    echo "export LANGUAGE=it_IT.UTF-8" >> /home/$USER_NAME/.bashrc; \
+    echo "export LC_ALL=it_IT.UTF-8" >> /root/.bashrc; \
+    echo "export LANG=it_IT.UTF-8" >> /root/.bashrc; \
+    echo "export LANGUAGE=it_IT.UTF-8" >> /root/.bashrc
+
 # enable services
 
 RUN systemctl enable cron.service
